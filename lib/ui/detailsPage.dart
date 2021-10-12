@@ -24,7 +24,7 @@ class _DetailsPageState extends State<DetailsPage> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 200),
+            padding: const EdgeInsets.only(top: 220, left: 20),
             child: Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.75,
@@ -34,39 +34,64 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 150.0),
+            padding: const EdgeInsets.only(top: 145.0, left: 70),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("WRX",
-                    style: GoogleFonts.roboto(
-                        fontSize: 36, color: Color(0xffA6A6A6))),
                 Row(
                   children: [
+                    Text("WRX",
+                        style: GoogleFonts.roboto(
+                            fontSize: 46, color: Color(0xffA6A6A6))),
                     Text("/INR",
                         style: GoogleFonts.roboto(
                             fontSize: 18, color: Color(0xffA6A6A6))),
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.lightBlue,
-                        child: Icon(MaterialCommunityIcons.bitcoin),
-                      ),
-                    )
                   ],
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: CircleAvatar(
+                    radius: 70,
+                    backgroundColor: Colors.white,
+                    child: CircleAvatar(
+                      radius: 45,
+                      backgroundColor: Colors.lightBlue,
+                      child: Icon(MaterialCommunityIcons.bitcoin,
+                          color: Colors.white),
+                    ),
+                  ),
                 )
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 200),
+            padding: const EdgeInsets.only(top: 50),
             child: Container(
               width: double.infinity,
               child: CustomPaint(
-                size: Size(500,300), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                size: Size(500,
+                    2000), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
                 painter: RPSCustomPainter(),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height.toDouble() * 0.4),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          buildRow("Bolinger Top", "Sp"),
+                          buildRow("Bolinger Bottom", "Bp"),
+                          buildRow("Current Price", "Cur"),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 80.0),
+                        child: Text("Time to sell now!",style: GoogleFonts.k2d(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.white)),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           )
@@ -74,43 +99,77 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
     );
   }
+
+  Widget buildRow(String title, String value) {
+    return title != "Current Price"
+        ? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "$title : ",
+                  style: GoogleFonts.k2d(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      color: Colors.white),
+                ),
+                Text("$value",
+                    style: GoogleFonts.k2d(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                        color: Colors.white))
+              ],
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(
+                      width: 2,
+                      color: Colors.grey.shade600,
+                      style: BorderStyle.solid)),
+              child: Text("$title : $value",
+                  style: GoogleFonts.k2d(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      color: Colors.yellow)),
+            ),
+          );
+  }
 }
 
-
-class RPSCustomPainter extends CustomPainter{
-
+class RPSCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-
-
-
     Paint paint_0 = new Paint()
       ..color = Color.fromARGB(255, 33, 150, 243)
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
-    paint_0.shader = ui.Gradient.linear(Offset(size.width*0.50,size.height*0.01),Offset(size.width*0.99,size.height*0.99),[Color(0xff006c85),Color(0xff00222d)],[0.00,1.00]);
+    paint_0.shader = ui.Gradient.linear(
+        Offset(size.width * 0.50, size.height * 0.01),
+        Offset(size.width * 0.99, size.height * 0.99),
+        [Color(0xff02648E), Color(0xff03090C)],
+        [0.00, 1.00]);
 
     Path path_0 = Path();
-    path_0.moveTo(size.width*0.0075000,size.height*0.0128571);
-    path_0.lineTo(size.width*0.0075000,size.height*0.9871429);
-    path_0.lineTo(size.width*0.9908333,size.height*0.9885714);
-    path_0.quadraticBezierTo(size.width*0.9920833,size.height*0.5685714,size.width*0.9925000,size.height*0.4285714);
-    path_0.quadraticBezierTo(size.width*0.0237500,size.height*0.4903571,size.width*0.0075000,size.height*0.0128571);
+    path_0.moveTo(size.width * 0.0, size.height * 0.0128571);
+    path_0.lineTo(size.width * 0.0, size.height * 1.5);
+    path_0.lineTo(size.width * 1.5, size.height * 1.5);
+    path_0.quadraticBezierTo(size.width * 0.9920833, size.height * 0.5685714,
+        size.width * 1.1, size.height * 0.3);
+    path_0.quadraticBezierTo(size.width * 0.0237500, size.height * 0.4903571,
+        size.width * 0.0075000, size.height * 0.0128571);
     path_0.close();
 
     canvas.drawPath(path_0, paint_0);
-
-
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
-
 }
-
-
-
-
-
