@@ -87,15 +87,15 @@ class RPSCustomPainter extends CustomPainter{
     Paint paint_0 = new Paint()
       ..color = Color.fromARGB(255, 33, 150, 243)
       ..style = PaintingStyle.fill
-      ..strokeWidth = 1.0;
-    paint_0.shader = ui.Gradient.linear(Offset(size.width*0.30,size.height*-0.07),Offset(size.width*0.61,size.height*1.03),[Color(0xff0583a8),Color(0xff043d55)],[0.00,1.00]);
+      ..strokeWidth = 1;
+    paint_0.shader = ui.Gradient.linear(Offset(size.width*0.50,size.height*0.01),Offset(size.width*0.99,size.height*0.99),[Color(0xff006c85),Color(0xff00222d)],[0.00,1.00]);
 
     Path path_0 = Path();
-    path_0.moveTo(size.width*-0.0142375,size.height*-0.0665375);
-    path_0.lineTo(size.width*-0.0157875,size.height*1.0307500);
-    path_0.lineTo(size.width*0.6058000,size.height*1.0291625);
-    path_0.quadraticBezierTo(size.width*0.6046500,size.height*0.5189750,size.width*0.6042250,size.height*0.3489000);
-    path_0.quadraticBezierTo(size.width*0.0437000,size.height*0.3736375,size.width*-0.0142375,size.height*-0.0665375);
+    path_0.moveTo(size.width*0.0075000,size.height*0.0128571);
+    path_0.lineTo(size.width*0.0075000,size.height*0.9871429);
+    path_0.lineTo(size.width*0.9908333,size.height*0.9885714);
+    path_0.quadraticBezierTo(size.width*0.9920833,size.height*0.5685714,size.width*0.9925000,size.height*0.4285714);
+    path_0.quadraticBezierTo(size.width*0.0237500,size.height*0.4903571,size.width*0.0075000,size.height*0.0128571);
     path_0.close();
 
     canvas.drawPath(path_0, paint_0);
@@ -109,6 +109,7 @@ class RPSCustomPainter extends CustomPainter{
   }
 
 }
+
 
 
 
