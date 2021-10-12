@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'dart:ui' as ui;
@@ -49,18 +50,22 @@ class _DetailsPageState extends State<DetailsPage> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CircleAvatar(
-                    radius: 70,
-                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: CircleAvatar(
-                      radius: 45,
-                      backgroundColor: Colors.lightBlue,
-                      child: Icon(MaterialCommunityIcons.bitcoin,
-                          color: Colors.white),
+                      radius: 70,
+                      backgroundColor: Colors.white,
+                      child: ClipOval(
+                        child: CircleAvatar(
+                          radius: 45,
+                          backgroundColor: Colors.lightBlue,
+                          child: Image.network(
+                            "https://wazirx.com/static/media/wazirx-logo-rounded.9bff9f42.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                )
+                ),
               ],
             ),
           ),
@@ -87,7 +92,11 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 80.0),
-                        child: Text("Time to sell now!",style: GoogleFonts.k2d(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.white)),
+                        child: Text("Time to sell now!",
+                            style: GoogleFonts.k2d(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40,
+                                color: Colors.white)),
                       )
                     ],
                   ),
@@ -124,19 +133,25 @@ class _DetailsPageState extends State<DetailsPage> {
           )
         : Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
+            child: DottedBorder(
+              dashPattern: [10, 10],
+              strokeWidth: 2,
+              color: Colors.grey.shade600,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
                   color: Colors.transparent,
-                  border: Border.all(
-                      width: 2,
-                      color: Colors.grey.shade600,
-                      style: BorderStyle.solid)),
-              child: Text("$title : $value",
-                  style: GoogleFonts.k2d(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28,
-                      color: Colors.yellow)),
+                  // border: Border.all(
+                  //     width: 2,
+                  //     color: Colors.grey.shade600,
+                  //     style: BorderStyle.solid)
+                ),
+                child: Text("$title : $value",
+                    style: GoogleFonts.k2d(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                        color: Colors.yellow)),
+              ),
             ),
           );
   }
