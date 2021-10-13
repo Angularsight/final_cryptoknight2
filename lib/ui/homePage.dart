@@ -1,3 +1,4 @@
+import 'package:final_cryptoknight/ui/detailsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
