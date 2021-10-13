@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
-
-
+import 'package:flutter_carousel_slider/carousel_slider.dart';
+import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui' as ui;
+import 'additionalWidgets/coins_card.dart';
 
 class WazirxHomePage extends StatefulWidget {
   const WazirxHomePage({Key? key}) : super(key: key);
@@ -13,21 +17,236 @@ class WazirxHomePage extends StatefulWidget {
 class _WazirxHomePageState extends State<WazirxHomePage> {
   @override
   Widget build(BuildContext context) {
-    final appBarGradient = LinearGradient(colors: [Color(0xff1F5F74),Color(0xff000000)],stops: [0.3,1]);
+    final appBarGradient = LinearGradient(
+        colors: [Color(0xff000000), Color(0xff1F5F74)], stops: [0.3, 1]);
+    final titleGradient = LinearGradient(colors: [
+      Color(0xffC3C3C3).withOpacity(0.71),
+      Color(0xffECECEC).withOpacity(0.31)
+    ], begin: Alignment.topLeft, end: Alignment.bottomRight);
+    final titleReverse = LinearGradient(colors: [
+      Color(0xffECECEC).withOpacity(0.31),
+      Color(0xffC3C3C3).withOpacity(0.71)
+    ], begin: Alignment.centerLeft, end: Alignment.centerRight);
+    final bottomNavGradient = LinearGradient(colors: [Color(0xff020404),Color(0xff1F5F74)]);
+
+    int _selectedBottomNavItem = 0;
 
     return Scaffold(
+      backgroundColor: Color(0xff053742),
       appBar: AppBar(
+        backgroundColor: Color(0xff053742),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: appBarGradient,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)
-            )
+              gradient: appBarGradient,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10))),
+        ),
+        title: Padding(
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.25),
+          child: Row(
+            children: [
+              ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return titleGradient.createShader(bounds);
+                  },
+                  child: Text(
+                    "Cryptoknight ",
+                    style: GoogleFonts.k2d(
+                        fontWeight: FontWeight.bold, fontSize: 28),
+                  )),
+              ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return titleReverse.createShader(bounds);
+                  },
+                  child: Icon(
+                    MaterialCommunityIcons.bitcoin,
+                    size: 28,
+                  ))
+            ],
+          ),
+        ),
+        centerTitle: true,
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          gradient: bottomNavGradient
+        ),
+        child: BottomNavigationBar(
+          onTap: (index){
+            _selectedBottomNavItem = index;
+          },
+          currentIndex: _selectedBottomNavItem,
+          selectedItemColor: Colors.yellow,
+          unselectedItemColor: Colors.grey,
+
+
+          backgroundColor: Colors.transparent,
+          type: BottomNavigationBarType.fixed,
+          elevation: 0,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Ionicons.ios_home),
+              label: "Home"
+            ),
+            BottomNavigationBarItem(
+                label: "Testing",
+                icon: Icon(MaterialCommunityIcons.bulletin_board))
+
+          ],
+
+
+        ),
+      ),
+      
+      
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                child: CustomPaint(
+                  size: Size(double.infinity,
+                      400), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                  painter: RPSCustomPainter(),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 50, 20, 10),
+                    child: CarouselSlider.builder(
+                      slideIndicator: CircularSlideIndicator(
+
+                        currentIndicatorColor: Colors.yellow,
+                        indicatorBackgroundColor: Colors.grey
+                      ),
+
+                        slideBuilder: (context) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        " Ivella yenu illa munde kodthini nodu nakkan",
+                                      style: GoogleFonts.k2d(color: Color(0xffA6A6A6),fontSize: 25,shadows: [Shadow(color: Colors.black38,offset: Offset(1,4),blurRadius: 5)]),
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "-Vishnu Pranav R",
+                                    style: GoogleFonts.k2d(color: Color(0xffA6A6A6),fontSize: 25,shadows: [Shadow(color: Colors.black38,offset: Offset(1,4),blurRadius: 5)]),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                ],
+                              )
+                            ],
+                          );
+                        },
+                        itemCount: 2),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 50, 0, 15),
+                child: Text(
+                  "Coins",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.k2d(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 48,
+                      color: Color(0xffD7D7D7)),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 180,
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CoinsCard(index: index);
+                    },
+                    separatorBuilder: (context, int) => SizedBox(
+                          width: 25,
+                        ),
+                    itemCount: 10),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0, left: 25),
+                child: Text(
+                  "Favourites",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.k2d(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 48,
+                      color: Color(0xffD7D7D7)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 30.0),
+                child: Container(
+                    width: double.infinity,
+                    height: 220,
+                    child: RotatedBox(
+                      quarterTurns: 1,
+                      child: ListWheelScrollView.useDelegate(
+                        squeeze: 1,
+                        physics: FixedExtentScrollPhysics(),
+                        itemExtent: 220,
+                        childDelegate: ListWheelChildBuilderDelegate(
+                          childCount: 10,
+                            builder: (builder, index) {
+                          return RotatedBox(
+                              quarterTurns: 3, child: CoinsCard(index: index));
+                        }),
+                      ),
+                    )),
+              )
+            ],
           ),
         ),
       ),
-
     );
+  }
+}
+
+class RPSCustomPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint_0 = new Paint()
+      ..color = Color.fromARGB(255, 33, 150, 243)
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 1;
+    paint_0.shader = ui.Gradient.linear(
+        Offset(size.width * 0.48, size.height * -0.31),
+        Offset(size.width * 0.48, size.height * 1.31),
+        [Color(0xff02648E), Color(0xff060101)],
+        [0.00, 1.00]);
+
+    Path path_0 = Path();
+    path_0.moveTo(size.width * -0.4082250, size.height * -0.3067571);
+    path_0.lineTo(size.width * 1.3765583, size.height * -0.3040571);
+    path_0.quadraticBezierTo(size.width * 1.0598833, size.height * 1.3034000,
+        size.width * 0.5186917, size.height * 1.3037714);
+    path_0.quadraticBezierTo(size.width * -0.0288000, size.height * 1.3070571,
+        size.width * -0.4082250, size.height * -0.3067571);
+    path_0.close();
+
+    canvas.drawPath(path_0, paint_0);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
