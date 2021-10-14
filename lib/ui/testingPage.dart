@@ -117,9 +117,7 @@ class _TestingPageState extends State<TestingPage> {
                 ),
 
               ),
-              // Positioned(
-              //     bottom: 0,
-              //     child: PaymentWindow())
+              PaymentWindow()
             ],
           ),
 
