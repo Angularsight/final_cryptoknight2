@@ -9,13 +9,14 @@ import 'dart:ui' as ui;
 import 'additionalWidgets/coins_card.dart';
 
 class WazirxHomePage extends StatefulWidget {
-  const WazirxHomePage({Key? key}) : super(key: key);
-
+  WazirxHomePage({Key? key}) : super(key: key);
+  int _selectedBottomNavItem = 0;
   @override
   _WazirxHomePageState createState() => _WazirxHomePageState();
 }
 
 class _WazirxHomePageState extends State<WazirxHomePage> {
+
   @override
   Widget build(BuildContext context) {
     final appBarGradient = LinearGradient(
@@ -28,9 +29,9 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
       Color(0xffECECEC).withOpacity(0.31),
       Color(0xffC3C3C3).withOpacity(0.71)
     ], begin: Alignment.centerLeft, end: Alignment.centerRight);
-    final bottomNavGradient = LinearGradient(colors: [Color(0xff020404),Color(0xff1F5F74)]);
 
-    int _selectedBottomNavItem = 0;
+
+
 
     return Scaffold(
       backgroundColor: Color(0xff053742),
@@ -70,36 +71,7 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          gradient: bottomNavGradient
-        ),
-        child: BottomNavigationBar(
-          onTap: (index){
-            _selectedBottomNavItem = index;
-          },
-          currentIndex: _selectedBottomNavItem,
-          selectedItemColor: Colors.yellow,
-          unselectedItemColor: Colors.grey,
 
-
-          backgroundColor: Colors.transparent,
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Ionicons.ios_home),
-              label: "Home"
-            ),
-            BottomNavigationBarItem(
-                label: "Testing",
-                icon: Icon(MaterialCommunityIcons.bulletin_board))
-
-          ],
-
-
-        ),
-      ),
       
       
       body: SingleChildScrollView(

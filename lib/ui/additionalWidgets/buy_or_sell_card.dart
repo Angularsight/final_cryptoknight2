@@ -73,7 +73,7 @@ class BuyOrSellCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
-              height: 60,
+              height: 50,
               width: MediaQuery.of(context).size.width*0.9,
               decoration: BoxDecoration(
                 color: Colors.transparent,
@@ -86,7 +86,7 @@ class BuyOrSellCard extends StatelessWidget {
                       width: 75,
 
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [

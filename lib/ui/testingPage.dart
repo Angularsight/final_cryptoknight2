@@ -1,9 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'additionalWidgets/paymentWindow.dart';
+import 'additionalWidgets/paymentWindow2.dart';
 
 class TestingPage extends StatefulWidget {
   const TestingPage({Key? key}) : super(key: key);
@@ -16,6 +14,7 @@ class _TestingPageState extends State<TestingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
         backgroundColor: Color(0xff053742),
         body: SingleChildScrollView(
           child: Column(
@@ -23,7 +22,7 @@ class _TestingPageState extends State<TestingPage> {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 90, vertical: 50),
+                    const EdgeInsets.only(top: 40,bottom: 20),
                 child: DottedBorder(
                   dashPattern: [10, 10],
                   strokeWidth: 2,
@@ -57,7 +56,7 @@ class _TestingPageState extends State<TestingPage> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: Text(
-                    "These are fake coins used for only testing purposes and do not hold any real value. So should only be used to see the trends of coins",
+                    "These are fake values used for only testing purposes and do not hold any real value. Therefore, should only be used to see the trends of coins",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.k2d(
                         fontStyle: FontStyle.italic,
@@ -67,7 +66,7 @@ class _TestingPageState extends State<TestingPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 30, 10, 20),
+                padding: const EdgeInsets.fromLTRB(30, 10, 10, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -109,44 +108,36 @@ class _TestingPageState extends State<TestingPage> {
                             color: Color(0xff5CC138)),
                       ),
                     ),
-                    buildRow("Low","3737415.0"),
-                    buildRow("High","3737415.0"),
-                    buildRow("Current","3737415.0"),
-
+                    buildRow("Low", "3737415.0"),
+                    buildRow("High", "3737415.0"),
+                    buildRow("Current", "3737415.0"),
                   ],
                 ),
-
               ),
-              PaymentWindow()
+              PaymentWindow2()
             ],
           ),
-
         ));
   }
 
-  Padding buildRow(String title,String value) {
+  Padding buildRow(String title, String value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.only(bottom: 5, right: 75),
       child: Row(
-                      children: [
-                        Text(
-                          "$title: ",
-                          style: GoogleFonts.k2d(
-                              fontWeight: FontWeight.w200,
-                              fontSize: 26,
-                              color: Colors.grey),
-                        ),
-                        Text(
-                          "$value",
-                          style: GoogleFonts.k2d(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 28,
-                              color: Colors.white),
-                        ),
-
-
-                      ],
-                    ),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "$title: ",
+            style: GoogleFonts.k2d(
+                fontWeight: FontWeight.w200, fontSize: 18, color: Colors.grey),
+          ),
+          Text(
+            "$value",
+            style: GoogleFonts.k2d(
+                fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
+          ),
+        ],
+      ),
     );
   }
 }

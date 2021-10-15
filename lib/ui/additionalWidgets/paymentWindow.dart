@@ -48,7 +48,7 @@ class _PaymentWindowState extends State<PaymentWindow>
                   height: 55,
                   width: MediaQuery.of(context).size.width * 0.5,
                   decoration: BoxDecoration(
-                      color: _isBuySelected?Colors.green.withOpacity(0.5):Colors.black38.withOpacity(0.3),
+                      color: _isBuySelected?Colors.green.withOpacity(0.9):Colors.black38.withOpacity(0.3),
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(20))),
                   child: Center(
