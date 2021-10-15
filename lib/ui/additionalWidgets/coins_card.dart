@@ -24,7 +24,13 @@ class _CoinsCardState extends State<CoinsCard> {
       padding: const EdgeInsets.only(left: 12.0),
       child: InkWell(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));
+          Navigator.push(context, PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 500),
+              reverseTransitionDuration: Duration(milliseconds: 500),
+              pageBuilder: (context,animation,secondaryAnimation){
+                return DetailsPage();
+          }));
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));
         },
         child: Container(
           width: 200,
@@ -41,7 +47,8 @@ class _CoinsCardState extends State<CoinsCard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text("Wrx",style: GoogleFonts.roboto(fontSize: 36,color: Color(0xffA6A6A6)),),
+                    Hero(tag: 'Coin Name',
+                    child: Text("Wrx",style: GoogleFonts.roboto(fontSize: 36,color: Color(0xffA6A6A6)),)),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0),
                       child: Text("/INR",textAlign: TextAlign.end,style: GoogleFonts.roboto(fontSize: 18,color: Color(0xffA6A6A6))),

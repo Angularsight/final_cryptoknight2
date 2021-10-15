@@ -41,9 +41,12 @@ class _DetailsPageState extends State<DetailsPage> {
               children: [
                 Row(
                   children: [
-                    Text("WRX",
-                        style: GoogleFonts.roboto(
-                            fontSize: 46, color: Color(0xffA6A6A6))),
+                    Hero(
+                      tag: "Coin Name",
+                      child: Text("WRX",
+                          style: GoogleFonts.roboto(
+                              fontSize: 46, color: Color(0xffA6A6A6))),
+                    ),
                     Text("/INR",
                         style: GoogleFonts.roboto(
                             fontSize: 18, color: Color(0xffA6A6A6))),
