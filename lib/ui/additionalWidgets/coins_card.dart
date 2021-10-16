@@ -23,8 +23,6 @@ class _CoinsCardState extends State<CoinsCard> {
     ], begin: Alignment.topLeft, end: Alignment.bottomRight);
     return Padding(
       padding: const EdgeInsets.only(left: 12.0),
-<<<<<<< HEAD
-=======
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -39,7 +37,7 @@ class _CoinsCardState extends State<CoinsCard> {
 
                     return FadeTransition(
                       opacity: curve,
-                      child: DetailsPage(coinName: coinTitle,),
+                      child: DetailsPage(coinName: widget.coinTitle,index:widget.index),
                     );
                   }));
           // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));
@@ -55,34 +53,44 @@ class _CoinsCardState extends State<CoinsCard> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Hero(
-                      tag: 'tag',
-                      child: Text(
-                        coinTitle,
-                        style: GoogleFonts.roboto(
-                            fontSize: 36, color: Color(0xffA6A6A6)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Text("/INR",
-                          textAlign: TextAlign.end,
+                child: Hero(
+                  tag: 'tag${widget.index}',
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          widget.coinTitle,
                           style: GoogleFonts.roboto(
-                              fontSize: 18, color: Color(0xffA6A6A6))),
-                    )
-                  ],
+                              fontSize: 36, color: Color(0xffA6A6A6)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: Text("/INR",
+                              textAlign: TextAlign.end,
+                              style: GoogleFonts.roboto(
+                                  fontSize: 18, color: Color(0xffA6A6A6))),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 40, right: 40, top: 5),
-                child: Text("Rs. CUR",
-                    style: GoogleFonts.roboto(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w300,
-                        color: Color(0xffA6A6A6))),
+                child: Material(
+                  type: MaterialType.transparency,
+
+                  child: Text("Rs. CUR",
+                      style: GoogleFonts.roboto(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w300,
+                          color: Color(0xffA6A6A6))),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
@@ -119,4 +127,3 @@ class _CoinsCardState extends State<CoinsCard> {
     );
   }
 }
->>>>>>> parent of 09d1d3c (animation v1.2)

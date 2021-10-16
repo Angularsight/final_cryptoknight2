@@ -9,7 +9,8 @@ import 'hero/hero_animation.dart';
 
 class DetailsPage extends StatefulWidget {
   final String coinName;
-  const DetailsPage({Key? key,required this.coinName}) : super(key: key);
+  final int index;
+  const DetailsPage({Key? key,required this.coinName,required this.index}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -42,20 +43,27 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Hero(
-                      tag: 'tag',
-                      child: Text(
-                        "${widget.coinName}",
-                        style: GoogleFonts.roboto(
-                            fontSize: 36, color: Color(0xffA6A6A6)),
+                Hero(
+                  tag: "tag${widget.index}",
+                  child: Row(
+                    children: [
+                      Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          widget.coinName,
+                          style: GoogleFonts.roboto(
+                              fontSize: 36, color: Color(0xffA6A6A6)),
+                        ),
                       ),
-                    ),
-                    Text("/INR",
-                        style: GoogleFonts.roboto(
-                            fontSize: 18, color: Color(0xffA6A6A6))),
-                  ],
+                      Material(
+                        type: MaterialType.transparency,
+                        child: Text("/INR",
+                            textAlign: TextAlign.end,
+                            style: GoogleFonts.roboto(
+                                fontSize: 18, color: Color(0xffA6A6A6))),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -131,11 +139,14 @@ class _DetailsPageState extends State<DetailsPage> {
                       fontSize: 28,
                       color: Colors.white),
                 ),
-                Text("$value",
-                    style: GoogleFonts.k2d(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Colors.white))
+                Material(
+                  type: MaterialType.transparency,
+                  child: Text("$value",
+                      style: GoogleFonts.k2d(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                          color: Colors.white)),
+                )
               ],
             ),
           )

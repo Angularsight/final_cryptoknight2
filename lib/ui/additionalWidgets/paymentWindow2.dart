@@ -26,7 +26,7 @@ class _PaymentWindow2State extends State<PaymentWindow2>
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.385,
+      height: MediaQuery.of(context).size.height * 0.5,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
           gradient: LinearGradient(colors: [
