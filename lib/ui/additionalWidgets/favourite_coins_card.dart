@@ -5,16 +5,16 @@ import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CoinsCard extends StatefulWidget {
+class FavouriteCard extends StatefulWidget {
   final String coinTitle;
   final int index;
-  const CoinsCard({Key? key, required this.index,required this.coinTitle}) : super(key: key);
+  const FavouriteCard({Key? key, required this.index,required this.coinTitle}) : super(key: key);
 
   @override
-  _CoinsCardState createState() => _CoinsCardState();
+  _FavouriteCardState createState() => _FavouriteCardState();
 }
 
-class _CoinsCardState extends State<CoinsCard> {
+class _FavouriteCardState extends State<FavouriteCard> {
   @override
   Widget build(BuildContext context) {
     final cardGradient = LinearGradient(colors: [
@@ -57,7 +57,7 @@ class _CoinsCardState extends State<CoinsCard> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: 'tag',
+                      tag: 'Hero${widget.index}',
                       child: Text(
                         widget.coinTitle,
                         style: GoogleFonts.roboto(
@@ -66,13 +66,10 @@ class _CoinsCardState extends State<CoinsCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0),
-                      child: Hero(
-                        tag: null,
-                        child: Text("/INR",
-                            textAlign: TextAlign.end,
-                            style: GoogleFonts.roboto(
-                                fontSize: 18, color: Color(0xffA6A6A6))),
-                      ),
+                      child: Text("/INR",
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.roboto(
+                              fontSize: 18, color: Color(0xffA6A6A6))),
                     )
                   ],
                 ),
@@ -109,13 +106,13 @@ class _CoinsCardState extends State<CoinsCard> {
         width: 80,
         height: 22,
         decoration:
-            BoxDecoration(color: color, borderRadius: BorderRadius.circular(6)),
+        BoxDecoration(color: color, borderRadius: BorderRadius.circular(6)),
         child: Center(
             child: Text(
-          '$title',
-          style: GoogleFonts.roboto(
-              fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white),
-        )),
+              '$title',
+              style: GoogleFonts.roboto(
+                  fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white),
+            )),
       ),
     );
   }

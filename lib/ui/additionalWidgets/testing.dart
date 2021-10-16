@@ -20,6 +20,7 @@ class _TestingState extends State<Testing> {
             child: Material(
               type: MaterialType.transparency,
               child: InkWell(
+                focusColor: Colors.green,
                 child: Text("WRX"),
                 onTap: () {
                   Navigator.push(
