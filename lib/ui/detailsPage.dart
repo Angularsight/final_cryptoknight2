@@ -101,8 +101,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     children: [
                       Column(
                         children: [
-                          buildRow("Bolinger Top", "Sp"),
-                          buildRow("Bolinger Bottom", "Bp"),
+                          buildRow("Bolinger Top", '${widget.coinName}SP'),
+                          buildRow("Bolinger Bottom", '${widget.coinName}BP'),
                           buildRow("Current Price", "Cur"),
                         ],
                       ),
@@ -139,13 +139,16 @@ class _DetailsPageState extends State<DetailsPage> {
                       fontSize: 28,
                       color: Colors.white),
                 ),
-                Material(
-                  type: MaterialType.transparency,
-                  child: Text("$value",
-                      style: GoogleFonts.k2d(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28,
-                          color: Colors.white)),
+                Hero(
+                  tag: title == "${widget.coinName}SP" ? "sp${widget.index}" : "bp${widget.index}",
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: Text("$value",
+                        style: GoogleFonts.k2d(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28,
+                            color: Colors.white)),
+                  ),
                 )
               ],
             ),

@@ -33,7 +33,7 @@ class _CoinsCardState extends State<CoinsCard> {
                   pageBuilder: (context, animation, secondaryAnimation) {
                     final curve = CurvedAnimation(
                         parent: animation,
-                        curve: Interval(0, 1, curve: Curves.easeInExpo));
+                        curve: Interval(0, 0.5, curve: Curves.easeInExpo));
 
                     return FadeTransition(
                       opacity: curve,
@@ -97,8 +97,8 @@ class _CoinsCardState extends State<CoinsCard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    buildInkButtons("BP", Color(0xff89C26E)),
-                    buildInkButtons('SP', Color(0xffEB6262))
+                    buildInkButtons("${widget.coinTitle}BP", Color(0xff89C26E)),
+                    buildInkButtons('${widget.coinTitle}SP', Color(0xffEB6262))
                   ],
                 ),
               )
@@ -109,21 +109,25 @@ class _CoinsCardState extends State<CoinsCard> {
     );
   }
 
-  InkWell buildInkButtons(String title, Color color) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        width: 80,
-        height: 22,
-        decoration:
-            BoxDecoration(color: color, borderRadius: BorderRadius.circular(6)),
-        child: Center(
-            child: Text(
-          '$title',
-          style: GoogleFonts.roboto(
-              fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white),
-        )),
+  Widget buildInkButtons(String title, Color color) {
+
+    return Container(
+      width: 80,
+      height: 22,
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(6)),
+      child: Center(
+          child: Hero(
+            tag: title == "${widget.coinTitle}SP" ? "sp${widget.index}" : "bp${widget.index}",
+            child: Material(
+              type: MaterialType.transparency,
+              child: Text(
+        '$title',
+        style: GoogleFonts.roboto(
+                fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white),
       ),
+            ),
+          )),
     );
   }
 }
