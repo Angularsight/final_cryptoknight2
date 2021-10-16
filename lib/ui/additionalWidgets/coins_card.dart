@@ -1,4 +1,5 @@
 import 'package:final_cryptoknight/ui/detailsPage.dart';
+import 'package:final_cryptoknight/ui/hero/hero_animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class CoinsCard extends StatefulWidget {
 class _CoinsCardState extends State<CoinsCard> {
   @override
   Widget build(BuildContext context) {
+    String coinTitle = "WRX";
     final cardGradient = LinearGradient(colors: [
       Color(0xffFFFCFC).withOpacity(0.24),
       Color(0xffFFFFFF).withOpacity(0.06)
@@ -31,11 +33,11 @@ class _CoinsCardState extends State<CoinsCard> {
                   pageBuilder: (context, animation, secondaryAnimation) {
                     final curve = CurvedAnimation(
                         parent: animation,
-                        curve: Interval(0.2, 1, curve: Curves.easeInExpo));
+                        curve: Interval(0, 1, curve: Curves.easeInExpo));
 
                     return FadeTransition(
                       opacity: curve,
-                      child: DetailsPage(),
+                      child: DetailsPage(coinName: coinTitle,),
                     );
                   }));
           // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));
@@ -55,12 +57,13 @@ class _CoinsCardState extends State<CoinsCard> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Hero(
-                        tag: 'Coin Name',
-                        child: Text(
-                          "Wrx",
-                          style: GoogleFonts.roboto(
-                              fontSize: 36, color: Color(0xffA6A6A6)),
-                        )),
+                      tag: 'tag',
+                      child: Text(
+                        coinTitle,
+                        style: GoogleFonts.roboto(
+                            fontSize: 36, color: Color(0xffA6A6A6)),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0),
                       child: Text("/INR",

@@ -8,6 +8,6 @@ class HeroWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(tag: 'Search', child: child);
+    return Hero(tag: tag, child: child);
   }
 }

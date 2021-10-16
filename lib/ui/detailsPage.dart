@@ -5,8 +5,11 @@ import 'dart:ui' as ui;
 
 import 'package:google_fonts/google_fonts.dart';
 
+import 'hero/hero_animation.dart';
+
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+  final String coinName;
+  const DetailsPage({Key? key,required this.coinName}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -42,10 +45,12 @@ class _DetailsPageState extends State<DetailsPage> {
                 Row(
                   children: [
                     Hero(
-                      tag: "Coin Name",
-                      child: Text("WRX",
-                          style: GoogleFonts.roboto(
-                              fontSize: 46, color: Color(0xffA6A6A6))),
+                      tag: 'tag',
+                      child: Text(
+                        "${widget.coinName}",
+                        style: GoogleFonts.roboto(
+                            fontSize: 36, color: Color(0xffA6A6A6)),
+                      ),
                     ),
                     Text("/INR",
                         style: GoogleFonts.roboto(
