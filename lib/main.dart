@@ -8,7 +8,6 @@ import 'bottomNav.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: BottomNavBar(),
+    home: Testing(),
   ));
 }
-
