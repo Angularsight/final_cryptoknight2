@@ -37,7 +37,7 @@ class _FavouriteCardState extends State<FavouriteCard> {
 
                     return FadeTransition(
                       opacity: curve,
-                      child: DetailsPage(coinName: widget.coinTitle,index: widget.index,),
+                      child: DetailsPage(coinName: widget.coinTitle,index: widget.index,coinPrice: "Same",),
                     );
                   }));
           // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));

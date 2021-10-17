@@ -86,7 +86,7 @@ class BuyOrSellCard extends StatelessWidget {
                       width: 75,
 
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(2.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [

@@ -18,6 +18,7 @@ class WazirxHomePage extends StatefulWidget {
 
 class _WazirxHomePageState extends State<WazirxHomePage> {
   var coinList = ["WRX","BTC","ETH",'DOGE','BZRX','CHR','HPR'];
+  var currentPrice = ['101.5','47,61,529','3,01,371.8','18.651','25.01','28.0400','28.55'];
   int _selectedBottomNavItem = 0;
   late ScrollController _scrollController;
   @override
@@ -97,6 +98,8 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.3,
+                decoration: BoxDecoration(
+                ),
                 child: CustomPaint(
                   size: Size(double.infinity,
                       400), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
@@ -161,7 +164,7 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return CoinsCard(index: index, coinTitle: coinList[index],);
+                      return CoinsCard(index: index, coinTitle: coinList[index],coinPrice: currentPrice[index],);
                     },
                     separatorBuilder: (context, int) => SizedBox(
                           width: 25,

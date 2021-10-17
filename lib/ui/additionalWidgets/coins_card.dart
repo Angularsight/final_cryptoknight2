@@ -7,8 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CoinsCard extends StatefulWidget {
   final String coinTitle;
+  final String coinPrice;
   final int index;
-  const CoinsCard({Key? key, required this.index,required this.coinTitle}) : super(key: key);
+  const CoinsCard({Key? key, required this.index,required this.coinTitle,required this.coinPrice}) : super(key: key);
 
   @override
   _CoinsCardState createState() => _CoinsCardState();
@@ -37,7 +38,7 @@ class _CoinsCardState extends State<CoinsCard> {
 
                     return FadeTransition(
                       opacity: curve,
-                      child: DetailsPage(coinName: widget.coinTitle,index:widget.index),
+                      child: DetailsPage(coinName: widget.coinTitle,index:widget.index,coinPrice:widget.coinPrice),
                     );
                   }));
           // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));
@@ -80,16 +81,21 @@ class _CoinsCardState extends State<CoinsCard> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40, top: 5),
-                child: Material(
-                  type: MaterialType.transparency,
-
-                  child: Text("Rs. CUR",
-                      style: GoogleFonts.roboto(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w300,
-                          color: Color(0xffA6A6A6))),
+              Hero(
+                tag: 'currentPrice${widget.index}',
+                child: Container(
+                  width: 180,
+                  height: 40,
+                  child: Center(
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: Text("Rs. ${widget.coinPrice}",
+                          style: GoogleFonts.roboto(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w300,
+                              color: Color(0xffA6A6A6))),
+                    ),
+                  ),
                 ),
               ),
               Padding(

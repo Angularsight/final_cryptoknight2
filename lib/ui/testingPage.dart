@@ -81,12 +81,12 @@ class _TestingPageState extends State<TestingPage> {
                               color: Color(0xff44CAF4)),
                         ),
                         Container(
-                            width: 95,
+                            width: 150,
                             height: 36,
                             child: TextField(
                               decoration: InputDecoration(
                                   hintText: "WRX/INR",
-                                  hintStyle: TextStyle(fontSize: 18),
+                                  hintStyle: TextStyle(fontSize: 12),
                                   suffixIcon:
                                       Icon(Icons.arrow_drop_down_outlined),
                                   filled: true,

@@ -10,7 +10,8 @@ import 'hero/hero_animation.dart';
 class DetailsPage extends StatefulWidget {
   final String coinName;
   final int index;
-  const DetailsPage({Key? key,required this.coinName,required this.index}) : super(key: key);
+  final String coinPrice;
+  const DetailsPage({Key? key,required this.coinName,required this.index,required this.coinPrice}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -101,9 +102,9 @@ class _DetailsPageState extends State<DetailsPage> {
                     children: [
                       Column(
                         children: [
-                          buildRow("Bolinger Top", '${widget.coinName}SP'),
-                          buildRow("Bolinger Bottom", '${widget.coinName}BP'),
-                          buildRow("Current Price", "Cur"),
+                          buildBollingerRow("Bollinger Top", '${widget.coinName}SP'),
+                          buildBollingerRow("Bollinger Bottom", '${widget.coinName}BP'),
+                          buildRow("Current Price", "${widget.coinPrice}"),
                         ],
                       ),
                       Padding(
@@ -125,9 +126,69 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
+
+  Widget buildBollingerRow(String title,String value){
+    if (title=="Bollinger Top") {
+      return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "$title : ",
+            style: GoogleFonts.k2d(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.white),
+          ),
+          Hero(
+            tag: "bp${widget.index}",
+            child: Material(
+              type: MaterialType.transparency,
+              child: Text("$value",
+                  style: GoogleFonts.k2d(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
+    } else {
+      return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "$title : ",
+            style: GoogleFonts.k2d(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.white),
+          ),
+          Hero(
+            tag: "sp${widget.index}",
+            child: Material(
+              type: MaterialType.transparency,
+              child: Text("$value",
+                  style: GoogleFonts.k2d(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
+    }
+
+  }
+
   Widget buildRow(String title, String value) {
-    return title != "Current Price"
-        ? Padding(
+    if (title != "Current Price") {
+      return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,43 +200,53 @@ class _DetailsPageState extends State<DetailsPage> {
                       fontSize: 28,
                       color: Colors.white),
                 ),
-                Hero(
-                  tag: title == "${widget.coinName}SP" ? "sp${widget.index}" : "bp${widget.index}",
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: Text("$value",
-                        style: GoogleFonts.k2d(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28,
-                            color: Colors.white)),
-                  ),
+                Material(
+                  type: MaterialType.transparency,
+                  child: Text("$value",
+                      style: GoogleFonts.k2d(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                          color: Colors.white)),
                 )
               ],
             ),
-          )
-        : Padding(
+          );
+    } else {
+      return Padding(
             padding: const EdgeInsets.all(8.0),
             child: DottedBorder(
               dashPattern: [10, 10],
               strokeWidth: 2,
               color: Colors.grey.shade600,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
-                  // border: Border.all(
-                  //     width: 2,
-                  //     color: Colors.grey.shade600,
-                  //     style: BorderStyle.solid)
                 ),
-                child: Text("$title : $value",
-                    style: GoogleFonts.k2d(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Colors.yellow)),
+                child: Row(
+                  children: [
+                    Text("$title : ",
+                        style: GoogleFonts.k2d(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28,
+                            color: Colors.yellow)),
+                    Hero(
+                      tag: 'currentPrice${widget.index}',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text("$value",
+                            style: GoogleFonts.k2d(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 28,
+                                color: Colors.yellow)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
+    }
   }
 }
 
