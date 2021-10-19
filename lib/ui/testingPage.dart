@@ -95,7 +95,8 @@ class _TestingPageState extends State<TestingPage> {
                                       borderRadius: BorderRadius.circular(18),
                                       borderSide:
                                           BorderSide(style: BorderStyle.none))),
-                            ))
+                            )
+                        )
                       ],
                     ),
                     Padding(

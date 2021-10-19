@@ -1,6 +1,6 @@
 import 'package:final_cryptoknight/ui/detailsPage.dart';
+import 'package:final_cryptoknight/ui/detailsPage2.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -17,20 +17,37 @@ class WazirxHomePage extends StatefulWidget {
 }
 
 class _WazirxHomePageState extends State<WazirxHomePage> {
-  var coinList = ["WRX","BTC","ETH",'DOGE','BZRX','CHR','HPR'];
-  var currentPrice = ['101.5','47,61,529','3,01,371.8','18.651','25.01','28.0400','28.55'];
-  int _selectedBottomNavItem = 0;
+  var coinList = ["WRX", "BTC", "ETH", 'DOGE', 'BZRX', 'CHR', 'HPR'];
+  var currentPrice = [
+    '101.5',
+    '47,61,529',
+    '3,01,371.8',
+    '18.651',
+    '25.01',
+    '28.0400',
+    '28.55'
+  ];
+  var coinListFav = ["WRX", "BTC", "ETH", 'DOGE', 'BZRX', 'CHR', 'HPR'];
+  var currentPriceFav = [
+    '101.5',
+    '47,61,529',
+    '3,01,371.8',
+    '18.651',
+    '25.01',
+    '28.0400',
+    '28.55'
+  ];
+  int _selectedListWheelItem = 0;
   late ScrollController _scrollController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _scrollController = ScrollController()..addListener(() {
-      setState(() {
+    _scrollController = ScrollController()
+      ..addListener(() {
+        setState(() {});
       });
-    });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +61,6 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
       Color(0xffECECEC).withOpacity(0.31),
       Color(0xffC3C3C3).withOpacity(0.71)
     ], begin: Alignment.centerLeft, end: Alignment.centerRight);
-
-
-
 
     return Scaffold(
       backgroundColor: Color(0xff053742),
@@ -86,9 +100,6 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
         ),
         centerTitle: true,
       ),
-
-      
-      
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 8.0),
@@ -98,8 +109,7 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.3,
-                decoration: BoxDecoration(
-                ),
+                decoration: BoxDecoration(),
                 child: CustomPaint(
                   size: Size(double.infinity,
                       400), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
@@ -107,12 +117,9 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 50, 20, 10),
                     child: CarouselSlider.builder(
-                      slideIndicator: CircularSlideIndicator(
-
-                        currentIndicatorColor: Colors.yellow,
-                        indicatorBackgroundColor: Colors.grey
-                      ),
-
+                        slideIndicator: CircularSlideIndicator(
+                            currentIndicatorColor: Colors.yellow,
+                            indicatorBackgroundColor: Colors.grey),
                         slideBuilder: (context) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -123,11 +130,18 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                        " Ivella yenu illa munde kodthini nodu nakkan",
-                                      style: GoogleFonts.k2d(color: Color(0xffA6A6A6),fontSize: 25,shadows: [Shadow(color: Colors.black38,offset: Offset(1,4),blurRadius: 5)]),
+                                      " Ivella yenu illa munde kodthini nodu nakkan",
+                                      style: GoogleFonts.k2d(
+                                          color: Color(0xffA6A6A6),
+                                          fontSize: 25,
+                                          shadows: [
+                                            Shadow(
+                                                color: Colors.black38,
+                                                offset: Offset(1, 4),
+                                                blurRadius: 5)
+                                          ]),
                                     ),
                                   ),
-
                                 ],
                               ),
                               Column(
@@ -135,7 +149,15 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                                 children: [
                                   Text(
                                     "-Vishnu Pranav R",
-                                    style: GoogleFonts.k2d(color: Color(0xffA6A6A6),fontSize: 25,shadows: [Shadow(color: Colors.black38,offset: Offset(1,4),blurRadius: 5)]),
+                                    style: GoogleFonts.k2d(
+                                        color: Color(0xffA6A6A6),
+                                        fontSize: 25,
+                                        shadows: [
+                                          Shadow(
+                                              color: Colors.black38,
+                                              offset: Offset(1, 4),
+                                              blurRadius: 5)
+                                        ]),
                                     textAlign: TextAlign.end,
                                   ),
                                 ],
@@ -164,7 +186,11 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return CoinsCard(index: index, coinTitle: coinList[index],coinPrice: currentPrice[index],);
+                      return CoinsCard(
+                        index: index,
+                        coinTitle: coinList[index],
+                        coinPrice: currentPrice[index],
+                      );
                     },
                     separatorBuilder: (context, int) => SizedBox(
                           width: 25,
@@ -172,7 +198,7 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                     itemCount: coinList.length),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 25.0, left: 25,bottom: 10),
+                padding: const EdgeInsets.only(top: 25.0, left: 25, bottom: 10),
                 child: Text(
                   "Favourites",
                   textAlign: TextAlign.start,
@@ -185,25 +211,44 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 30.0),
                 child: Container(
-                    width: MediaQuery.of(context).size.width*0.9,
+                    width: MediaQuery.of(context).size.width,
                     height: 220,
                     child: RotatedBox(
                       quarterTurns: 3,
-                      child: ListWheelScrollView.useDelegate(
-                        squeeze: 1,
-                        physics: FixedExtentScrollPhysics(),
-                        itemExtent: 220,
-                        childDelegate: ListWheelChildBuilderDelegate(
-                          childCount: 10,
-                            builder: (builder, index) {
-                            if(index<=coinList.length-1) {
-                              return RotatedBox(
-                                quarterTurns: 1,
-                                child: FavouriteCard(
-                                  index: index, coinTitle: coinList[index],),
-                              );
-                            }
-                        }),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, PageRouteBuilder(pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return DetailsPageF(
+                                coinName: coinListFav[_selectedListWheelItem],
+                                index: _selectedListWheelItem,
+                                coinPrice:
+                                    currentPriceFav[_selectedListWheelItem]);
+                          }));
+                        },
+                        child: ListWheelScrollView.useDelegate(
+                          onSelectedItemChanged: (index) {
+                            setState(() {
+                              _selectedListWheelItem = index;
+                            });
+                          },
+                          squeeze: 1,
+                          physics: FixedExtentScrollPhysics(),
+                          itemExtent: 220,
+                          childDelegate: ListWheelChildBuilderDelegate(
+                              childCount: 10,
+                              builder: (builder, index) {
+                                if (index <= coinListFav.length - 1) {
+                                  return RotatedBox(
+                                    quarterTurns: 1,
+                                    child: FavouriteCard(
+                                      index: index,
+                                      coinTitle: coinListFav[index], coinPrice: currentPriceFav[index],
+                                    ),
+                                  );
+                                }
+                              }),
+                        ),
                       ),
                     )),
               )
