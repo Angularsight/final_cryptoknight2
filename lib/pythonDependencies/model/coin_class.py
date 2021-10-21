@@ -1,4 +1,4 @@
-class CoinClass:
+class CoinClass :
     def __init__(self, coin_name, current_price, upper_bollinger, lower_bollinger):
         self.coin_name = coin_name
         self.current_price = current_price
