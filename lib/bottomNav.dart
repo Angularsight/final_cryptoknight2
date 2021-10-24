@@ -21,10 +21,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedBottomNavItem = 0;
 
   //API CALL
-  // late List <AllCoinsBollinger> allBollingerData;
+  late List <AllCoinsBollinger> allBollingerData;
   // late List <SingleCoinBollinger> singleCoinBollinger;
-  late AllCoinsBollinger allCoinsBollinger;
-  late SingleCoinBollinger singleCoinBollinger;
+  // late AllCoinsBollingerSuper allCoinsBollinger;
+  // late SingleCoinBollingerSuper singleCoinBollinger;
   var screens = [
     WazirxHomePage(),
     TestingPage(),
@@ -60,13 +60,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
       // print(data1);
       // print(data2);
 
-      allCoinsBollinger = AllCoinsBollinger.fromJson(data1);
-      singleCoinBollinger = SingleCoinBollinger.fromJson(data2);
+      // allBollingerData = List AllCoinsBollinger.fromJson(data1);
+      // singleCoinBollinger = SingleCoinBollingerSuper.fromJson(data2);
       // allBollingerData = data1.map((e) => AllCoinsBollinger.fromJson(e)).toList();
       // singleCoinBollinger = data2.map((e) => SingleCoinBollinger.fromJson(e)).toList();
 
-      print(allCoinsBollinger);
-      print(singleCoinBollinger);
+      print(data2[20]["bollinger_bands_lower_5min"]);
+      // print(allCoinsBollinger);
+      // print(singleCoinBollinger);
     });
 
 

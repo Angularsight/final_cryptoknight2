@@ -16,6 +16,7 @@ class AllCoinsBollingerSuper{
       data['items'] = this.items!.map((e) => e.toJson()).toList();
     }
     return data;
+    //
   }
 }
 
