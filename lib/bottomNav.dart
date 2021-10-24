@@ -1,7 +1,10 @@
+import 'package:final_cryptoknight/network/bollingerApiCall.dart';
 import 'package:final_cryptoknight/ui/homePage.dart';
 import 'package:final_cryptoknight/ui/testingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+
+import 'model/allCoinsBollinger.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -14,10 +17,21 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedBottomNavItem = 0;
 
 
+
+  //API CALL
+  late Future<AllCoinsBollinger> allBollingerData;
+
   var screens = [
     WazirxHomePage(),
     TestingPage(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    allBollingerData = BollingerApiCall().getAllBollinger();
+  }
 
   @override
   Widget build(BuildContext context) {

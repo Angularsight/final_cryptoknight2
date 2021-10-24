@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 s = Service(ChromeDriverManager().install())
@@ -41,8 +43,6 @@ def single_coin_data():
     while True:
         coin_name = dr.find_element(By.XPATH, '/html/body/div[2]/div[1]/div/div[1]/div[2]/table/tr[1]/td[2]/div/div[1]/div[1]/div[1]/div[1]/div[1]').text
 
-        # coin_price = dr.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div[2]/div[2]/span[2]')
-        # upperBollinger = dr.find_element(By.CLASS_NAME, 'valueValue-3kA0oJs5').text
         upperBollinger = dr.find_element(By.XPATH,
             '/html/body/div[2]/div[1]/div/div[1]/div[2]/table/tr[1]/td[2]/div/div[1]/div[2]/div[2]/div[3]/div[3]/div/div[3]/div').text
         time.sleep(1)
@@ -73,7 +73,7 @@ def single_coin_2():
     ans2 = 0
     new_coin_data = {}
     while True:
-        upperBollinger = dr.find_element(By.CLASS_NAME,
+        upperBollinger = dr.find_element(By.XPATH,
                                          '/html/body/div[2]/div[1]/div/div[1]/div[2]/table/tr[1]/td[2]/div/div[1]/div[2]/div[2]/div[3]/div[3]/div/div['
                                          '3]/div').text
 
@@ -100,7 +100,7 @@ def single_coin_2():
         return new_coin_data
 
 
-single_coin_data()
+# single_coin_data()
 
 if __name__ == "__main__":
     coins = dr.find_elements(By.CLASS_NAME, 'ticker-item')
@@ -109,12 +109,16 @@ if __name__ == "__main__":
     for i in coins:
         data1 = single_coin_data()
         overall_coins[j] = data1
+        print(overall_coins)
         j += 1
 
         if j < 1:
             print(j, end=' ')
             continue
         elif j >= 1 and j < 30:
+            # wait = WebDriverWait.until(dr,5)
+            # wait.unti(EC.presence_of_element_located(i.get))
+            dr.implicitly_wait(2)
             i.click()
             data2 = single_coin_2()
             overall_coins[j] = data2
