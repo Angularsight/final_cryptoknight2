@@ -1,3 +1,27 @@
+class SingleCoinBollingerSuper{
+  List<SingleCoinBollinger>? items;
+  SingleCoinBollingerSuper({this.items});
+
+  SingleCoinBollingerSuper.fromJson(Map<String,dynamic> json){
+    if(json['items']!=null){
+      items = <SingleCoinBollinger>[];
+      json['items'].forEach((v)=> items!.add(new SingleCoinBollinger.fromJson(v)));
+    }
+  }
+
+  Map<String,dynamic> toJson(){
+    final Map<String,dynamic> data = new Map<String,dynamic>();
+    if(this.items!=null){
+      data['items'] = this.items!.map((e) => e.toJson()).toList();
+    }
+    return data;
+  }
+
+}
+
+
+
+
 class SingleCoinBollinger {
   int? rank;
   String? coinSymbol;
