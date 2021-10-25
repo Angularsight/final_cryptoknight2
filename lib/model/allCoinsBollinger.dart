@@ -16,6 +16,7 @@ class AllCoinsBollingerSuper with ChangeNotifier{
       data['items'] = this.items!.map((e) => e.toJson()).toList();
     }
     return data;
+    //
   }
 }
 
