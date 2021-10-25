@@ -1,13 +1,13 @@
 
-class AllCoinsBollingerSuper{
+import 'package:flutter/cupertino.dart';
+
+class AllCoinsBollingerSuper with ChangeNotifier{
   List<AllCoinsBollinger>? items;
   AllCoinsBollingerSuper({this.items});
 
-  AllCoinsBollingerSuper.fromJson(Map<String,dynamic> json){
-    if(json['items']!=null){
-      items = <AllCoinsBollinger>[];
-      json['items'].forEach((v)=> items!.add(new AllCoinsBollinger.fromJson(v)));
-    }
+  AllCoinsBollingerSuper.fromJson(List<dynamic> json){
+    items = <AllCoinsBollinger>[];
+    json.forEach((v)=> items!.add(new AllCoinsBollinger.fromJson(v)));
   }
 
   Map<String,dynamic> toJson(){

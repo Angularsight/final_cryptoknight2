@@ -21,9 +21,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedBottomNavItem = 0;
 
   //API CALL
-  // late List <AllCoinsBollinger> allBollingerData;
-  // late List <SingleCoinBollinger> singleCoinBollinger;
-  late AllCoinsBollinger allCoinsBollinger;
+
+  late AllCoinsBollingerSuper allCoinsBollinger;
   late SingleCoinBollinger singleCoinBollinger;
   var screens = [
     WazirxHomePage(),
@@ -35,8 +34,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
     // TODO: implement initState
     super.initState();
     fetchData();
-    // allBollingerData = BollingerApiCall().getAllBollinger();
-    // singleCoinBollinger = SingleCoinBollingerData().singleCoinBollinger("BTC");
+
+
   }
 
   Future fetchData() async {
@@ -57,16 +56,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
     setState(() {
       var data1 = json.decode(results[0].body);
       var data2 = json.decode(results[1].body);
-      // print(data1);
-      // print(data2);
 
-      allCoinsBollinger = AllCoinsBollinger.fromJson(data1);
-      singleCoinBollinger = SingleCoinBollinger.fromJson(data2);
-      // allBollingerData = data1.map((e) => AllCoinsBollinger.fromJson(e)).toList();
-      // singleCoinBollinger = data2.map((e) => SingleCoinBollinger.fromJson(e)).toList();
+      singleCoinBollinger = SingleCoinBollinger.fromJson(data1);
+      allCoinsBollinger = AllCoinsBollingerSuper.fromJson(data2);
 
-      print(allCoinsBollinger);
-      print(singleCoinBollinger);
+      for (int i=0;i<allCoinsBollinger.items!.length;i++){
+        print(allCoinsBollinger.items![i].bollingerBandsUpper15min);
+      }
+      print('******************************************');
+      print("${singleCoinBollinger.priceUsd},${singleCoinBollinger.coinSymbol}");
     });
 
 

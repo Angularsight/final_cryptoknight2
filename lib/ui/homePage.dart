@@ -51,6 +51,7 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     final appBarGradient = LinearGradient(
         colors: [Color(0xff000000), Color(0xff1F5F74)], stops: [0.3, 1]);
     final titleGradient = LinearGradient(colors: [
