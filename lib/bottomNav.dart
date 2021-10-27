@@ -34,8 +34,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     // TODO: implement initState
     super.initState();
     fetchData();
-
-
   }
 
   Future fetchData() async {
@@ -72,6 +70,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+
+
     final bottomNavGradient =
         LinearGradient(colors: [Color(0xff020404), Color(0xff1F5F74)]);
     return Scaffold(
