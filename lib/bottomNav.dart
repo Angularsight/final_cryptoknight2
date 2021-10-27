@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:final_cryptoknight/model/singleCoinBollinger.dart';
 import 'package:final_cryptoknight/network/bollingerApiCall.dart';
 import 'package:final_cryptoknight/network/singleCoinBollingerApiCall.dart';
+import 'package:final_cryptoknight/provider/coinDataProvider.dart';
 import 'package:final_cryptoknight/ui/homePage.dart';
 import 'package:final_cryptoknight/ui/testingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 import 'model/allCoinsBollinger.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -33,7 +35,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetchData();
+    // fetchData();
   }
 
   Future fetchData() async {
@@ -74,6 +76,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
     final bottomNavGradient =
         LinearGradient(colors: [Color(0xff020404), Color(0xff1F5F74)]);
+
+    //Provider part
+    final coinProvider = Provider.of<CoinDataProvider>(context);
+    coinProvider.fetchData();
+    print(coinProvider.resultData[0].body);
+
     return Scaffold(
       body: screens[_selectedBottomNavItem],
       bottomNavigationBar: Container(
