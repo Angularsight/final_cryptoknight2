@@ -1,9 +1,11 @@
+import 'package:final_cryptoknight/provider/coinDataProvider.dart';
 import 'package:final_cryptoknight/ui/detailsPage.dart';
 import 'package:final_cryptoknight/ui/hero/hero_animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CoinsCard extends StatefulWidget {
   final String coinTitle;
@@ -22,6 +24,9 @@ class _CoinsCardState extends State<CoinsCard> {
       Color(0xffFFFCFC).withOpacity(0.24),
       Color(0xffFFFFFF).withOpacity(0.06)
     ], begin: Alignment.topLeft, end: Alignment.bottomRight);
+    final coinProvider = Provider.of<CoinDataProvider>(context);
+    var coinData = coinProvider.allCoinsBollinger;
+
     return Padding(
       padding: const EdgeInsets.only(left: 12.0),
       child: InkWell(
@@ -62,7 +67,8 @@ class _CoinsCardState extends State<CoinsCard> {
                       Material(
                         type: MaterialType.transparency,
                         child: Text(
-                          widget.coinTitle,
+                          // widget.coinTitle,
+                          coinData.items![widget.index].coinSymbol.toString(),
                           style: GoogleFonts.roboto(
                               fontSize: 36, color: Color(0xffA6A6A6)),
                         ),

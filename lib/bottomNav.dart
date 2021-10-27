@@ -24,8 +24,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   //API CALL
 
-  late AllCoinsBollingerSuper allCoinsBollinger;
-  late SingleCoinBollinger singleCoinBollinger;
+  AllCoinsBollingerSuper? allCoinsBollinger;
+  SingleCoinBollinger? singleCoinBollinger;
   var screens = [
     WazirxHomePage(),
     TestingPage(),
@@ -36,6 +36,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
     // TODO: implement initState
     super.initState();
     // fetchData();
+
+    final coinProvider = Provider.of<CoinDataProvider>(context,listen: false);
+    coinProvider.fetchData().whenComplete(() {
+      setState(() {});
+    });
   }
 
   Future fetchData() async {
@@ -60,11 +65,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       singleCoinBollinger = SingleCoinBollinger.fromJson(data1);
       allCoinsBollinger = AllCoinsBollingerSuper.fromJson(data2);
 
-      for (int i=0;i<allCoinsBollinger.items!.length;i++){
-        print(allCoinsBollinger.items![i].bollingerBandsUpper15min);
+      for (int i=0;i<allCoinsBollinger!.items!.length;i++){
+        print(allCoinsBollinger!.items![i].bollingerBandsUpper15min);
       }
       print('******************************************');
-      print("${singleCoinBollinger.priceUsd},${singleCoinBollinger.coinSymbol}");
+      print("${singleCoinBollinger!.priceUsd},${singleCoinBollinger!.coinSymbol}");
     });
 
 
@@ -78,9 +83,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
         LinearGradient(colors: [Color(0xff020404), Color(0xff1F5F74)]);
 
     //Provider part
-    final coinProvider = Provider.of<CoinDataProvider>(context);
-    coinProvider.fetchData();
-    print(coinProvider.resultData[0].body);
+    // final coinProvider = Provider.of<CoinDataProvider>(context,listen: false);
+    // coinProvider.fetchData().whenComplete(() {
+    //   setState(() {});
+    // });
+    // var coinData = coinProvider.allCoinsBollinger;
+    // print(coinData.items![0].coinSymbol);
+    // for (int i=0;i<allCoinsBollinger!.items!.length;i++){
+    //   print(allCoinsBollinger!.items![i].bollingerBandsUpper15min);
+    // }
+
 
     return Scaffold(
       body: screens[_selectedBottomNavItem],
