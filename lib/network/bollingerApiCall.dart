@@ -19,8 +19,6 @@ class BollingerApiCall {
     }else{
       throw Exception('Error in networking block');
     }
-
-
   }
 
 }
