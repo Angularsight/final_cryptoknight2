@@ -1,3 +1,6 @@
+import 'package:final_cryptoknight/model/singleCoinBollinger.dart';
+import 'package:final_cryptoknight/provider/coinDataProvider.dart';
+import 'package:final_cryptoknight/ui/additionalWidgets/coins_card2.dart';
 import 'package:final_cryptoknight/ui/detailsPage.dart';
 import 'package:final_cryptoknight/ui/detailsPage2.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +8,7 @@ import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
 import 'additionalWidgets/coins_card.dart';
 import 'additionalWidgets/favourite_coins_card.dart';
@@ -51,6 +55,8 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final coinData = Provider.of<CoinDataProvider>(context);
+    var coinDataBody = coinData.allCoinsBollinger;
 
     final appBarGradient = LinearGradient(
         colors: [Color(0xff000000), Color(0xff1F5F74)], stops: [0.3, 1]);
@@ -187,16 +193,16 @@ class _WazirxHomePageState extends State<WazirxHomePage> {
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return CoinsCard(
+                      return CoinsCard2(
                         index: index,
-                        coinTitle: coinList[index],
-                        coinPrice: currentPrice[index],
+                        // coinTitle: coinList[index],
+                        // coinPrice: currentPrice[index],
                       );
                     },
                     separatorBuilder: (context, int) => SizedBox(
                           width: 25,
                         ),
-                    itemCount: coinList.length),
+                    itemCount: coinDataBody.items!.length),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0, left: 25, bottom: 10),

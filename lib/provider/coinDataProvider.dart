@@ -11,6 +11,9 @@ class CoinDataProvider with ChangeNotifier {
   late final AllCoinsBollingerSuper _allCoinsBollinger;
   // final resultData = [];
 
+
+
+
   SingleCoinBollinger get singleCoinBollinger => _singleCoinBollinger;
   AllCoinsBollingerSuper get allCoinsBollinger => _allCoinsBollinger;
 
@@ -32,8 +35,8 @@ class CoinDataProvider with ChangeNotifier {
     var data1 = json.decode(results[0].body);
     var data2 = json.decode(results[1].body);
 
-    _singleCoinBollinger = SingleCoinBollinger.fromJson(data1);
-    _allCoinsBollinger = AllCoinsBollingerSuper.fromJson(data2);
+    _singleCoinBollinger =  SingleCoinBollinger.fromJson(data1);
+    _allCoinsBollinger =  AllCoinsBollingerSuper.fromJson(data2);
 
     // resultData.add(_singleCoinBollinger);
     // resultData.add(_allCoinsBollinger);
