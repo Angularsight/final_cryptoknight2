@@ -38,8 +38,6 @@ class CoinDataProvider with ChangeNotifier {
     _singleCoinBollinger =  SingleCoinBollinger.fromJson(data1);
     _allCoinsBollinger =  AllCoinsBollingerSuper.fromJson(data2);
 
-    // resultData.add(_singleCoinBollinger);
-    // resultData.add(_allCoinsBollinger);
 
     notifyListeners();
   }
