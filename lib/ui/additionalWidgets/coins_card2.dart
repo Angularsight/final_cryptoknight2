@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../detailsPage3.dart';
-
 class CoinsCard2 extends StatefulWidget {
 
   final int index;
@@ -44,7 +42,7 @@ class _CoinsCard2State extends State<CoinsCard2> {
 
                     return FadeTransition(
                       opacity: curve,
-                      child: ChangeNotifierProvider.value(value: coinData,child: DetailsPage3(index: widget.index,))
+                      child: DetailsPage(coinName: "BTC",index:widget.index,coinPrice:"34"),
                     );
                   }));
           // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsPage()));
