@@ -10,6 +10,9 @@ void main() {
     home: MultiProvider(providers: [
       ChangeNotifierProvider(create: (_)=>CoinDataProvider())
     ],
+
+
+    
     child: BottomNavBar(),
     )
   ));
